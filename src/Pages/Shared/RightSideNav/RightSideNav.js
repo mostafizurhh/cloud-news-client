@@ -7,19 +7,21 @@ import BrandCarousel from '../../../Carousel/BrandCarousel';
 const RightSideNav = () => {
     return (
         <div>
-            <ButtonGroup vertical>
-                <Button variant="outline-primary" className='mb-2'><FaGoogle className='me-2'></FaGoogle>Login with Google</Button>
-                <Button variant="outline-dark"><FaGithub className='me-2'></FaGithub>Login with Github</Button>
-            </ButtonGroup>
+            <div>
+                <ButtonGroup vertical>
+                    <Button variant="outline-primary" className='mb-2 d-flex flex-row align-items-center' size="sm"><FaGoogle className='me-2'></FaGoogle><small className='ps-2 pe-1'>Login with Google</small></Button>
+                    <Button variant="outline-dark" className='mb-2 d-flex flex-row align-items-center' size="sm"><FaGithub className='me-2'></FaGithub><small className='ps-2 pe-1'>Login with Github</small></Button>
+                </ButtonGroup>
+            </div>
             <div>
                 <h6 className='pt-2'>Find Us On</h6>
                 <ButtonGroup vertical>
-                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center'><FaFacebook className='me-1'></FaFacebook>FaceBook</Button>
-                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center'><FaYoutube className='me-1'></FaYoutube>Youtube</Button>
-                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center'><FaTwitter className='me-1'></FaTwitter>Twitter</Button>
-                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center'><FaWhatsapp className='me-1'></FaWhatsapp>WhatsApp</Button>
-                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center'><FaDiscord className='me-1'></FaDiscord> Discord</Button>
-                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center'>
+                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center' size="sm"><FaFacebook className='me-1'></FaFacebook>FaceBook</Button>
+                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center' size="sm"><FaYoutube className='me-1'></FaYoutube>Youtube</Button>
+                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center' size="sm"><FaTwitter className='me-1'></FaTwitter>Twitter</Button>
+                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center' size="sm"><FaWhatsapp className='me-1'></FaWhatsapp>WhatsApp</Button>
+                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center' size="sm"><FaDiscord className='me-1'></FaDiscord> Discord</Button>
+                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center' size="sm">
                         <div className='pe-1'>
                             <FaInstagram></FaInstagram>
                         </div>
@@ -27,7 +29,7 @@ const RightSideNav = () => {
                             Instagram
                         </div>
                     </Button>
-                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center'>
+                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center' size="sm">
                         <div className='pe-1'>
                             <FaUserSecret></FaUserSecret>
                         </div>
@@ -35,7 +37,7 @@ const RightSideNav = () => {
                             Privacy Policy
                         </div>
                     </Button>
-                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center'>
+                    <Button variant="outline-secondary" className='mb-2 d-flex flex-row align-items-center' size="sm">
                         <div className='pe-1'>
                             <FaRegNewspaper></FaRegNewspaper>
                         </div>
