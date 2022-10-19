@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from 'react-router-dom';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import RightSideNav from '../RightSideNav/RightSideNav';
 
@@ -10,7 +11,7 @@ const Header = () => {
     return (
         <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" className='mb-3' sticky="top">
             <Container>
-                <Navbar.Brand href="#home">Cloud News</Navbar.Brand>
+                <Navbar.Brand><Link to='/'>Cloud News</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
