@@ -1,15 +1,19 @@
 import React, { useContext } from 'react';
+import { Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import RightSideNav from '../RightSideNav/RightSideNav';
 
 const Header = () => {
+    /* get context */
     const { user } = useContext(AuthContext)
+
     return (
         <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" className='mb-3' sticky="top">
             <Container>
@@ -34,7 +38,14 @@ const Header = () => {
                     <Nav>
                         <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
+                            {/* conditional formating for image */}
+                            {
+                                user.photoURL ?
+                                    <Image
+                                        style={{ height: 30 }} roundedCircle
+                                        src={user.photoURL} ></Image>
+                                    : <FaUser></FaUser>
+                            }
                         </Nav.Link>
                     </Nav>
                     <div className='d-sm-none'>

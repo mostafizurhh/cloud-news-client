@@ -1,15 +1,32 @@
-import React from 'react';
+import { GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FaDiscord, FaFacebook, FaGithub, FaGoogle, FaInstagram, FaRegNewspaper, FaTwitter, FaUserSecret, FaWhatsapp, FaYoutube } from 'react-icons/fa'
 import BrandCarousel from '../../../Carousel/BrandCarousel';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const RightSideNav = () => {
+    /* get context */
+    const { providerLogin } = useContext(AuthContext);
+
+    /* create provider */
+    const googleProvider = new GoogleAuthProvider();
+
+    /* button onSubmit function */
+    const handleGoogleSignin = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(error => console.error(error))
+    }
     return (
         <div>
             <div>
                 <ButtonGroup vertical>
-                    <Button variant="outline-primary" className='mb-2 d-flex flex-row align-items-center' size="sm"><FaGoogle className='me-2'></FaGoogle><small className='ps-2 pe-1'>Login with Google</small></Button>
+                    <Button onClick={handleGoogleSignin} variant="outline-primary" className='mb-2 d-flex flex-row align-items-center' size="sm"><FaGoogle className='me-2'></FaGoogle><small className='ps-2 pe-1'>Login with Google</small></Button>
                     <Button variant="outline-dark" className='mb-2 d-flex flex-row align-items-center' size="sm"><FaGithub className='me-2'></FaGithub><small className='ps-2 pe-1'>Login with Github</small></Button>
                 </ButtonGroup>
             </div>
