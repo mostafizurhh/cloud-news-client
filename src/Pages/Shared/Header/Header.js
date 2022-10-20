@@ -46,7 +46,10 @@ const Header = () => {
                             {/* conditional formating for new and existing user */}
                             {
                                 user?.uid ?
-                                    <span>{user?.displayName}</span>
+                                    <>
+                                        <span>{user?.displayName}</span>
+                                        <button onClick={handleLogOut} className='btn btn-primary btn-sm ms-2'>Logout</button>
+                                    </>
                                     :
                                     <>
                                         <Link to='/login'>Login</Link>
@@ -65,7 +68,6 @@ const Header = () => {
                                     </Image>
                                     : <FaUser></FaUser>
                             }
-                            <button onClick={handleLogOut} className='btn btn-primary btn-sm ms-2'>Logout</button>
                         </Nav.Link>
                     </Nav>
                     <div className='d-sm-none'>
