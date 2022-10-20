@@ -12,7 +12,13 @@ import RightSideNav from '../RightSideNav/RightSideNav';
 
 const Header = () => {
     /* get context */
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
     return (
         <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" className='mb-3' sticky="top">
@@ -36,16 +42,30 @@ const Header = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
+                        <Nav.Link href="#deets">
+                            {/* conditional formating for new and existing user */}
+                            {
+                                user?.uid ?
+                                    <span>{user?.displayName}</span>
+                                    :
+                                    <>
+                                        <Link to='/login'>Login</Link>
+                                        <Link to='/register' className='ms-2'>Register</Link>
+                                    </>
+                            }
+
+                        </Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
                             {/* conditional formating for image */}
                             {
-                                user.photoURL ?
+                                user?.photoURL ?
                                     <Image
-                                        style={{ height: 30 }} roundedCircle
-                                        src={user.photoURL} ></Image>
+                                        style={{ height: '30px' }} roundedCircle
+                                        src={user?.photoURL}>
+                                    </Image>
                                     : <FaUser></FaUser>
                             }
+                            <button onClick={handleLogOut} className='btn btn-primary btn-sm ms-2'>Logout</button>
                         </Nav.Link>
                     </Nav>
                     <div className='d-sm-none'>
