@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
@@ -8,7 +9,7 @@ const Register = () => {
     const [error, setError] = useState(''); /* set error state */
     const [termsAccepted, setTermsAccepted] = useState(false); /* set terms and conditions state */
 
-    const { createUser, updateUserInfo } = useContext(AuthContext);
+    const { createUser, updateUserInfo, emailVerification } = useContext(AuthContext);
 
     /* redirect user to the route they wanted to go before login */
     const navigate = useNavigate();
@@ -31,13 +32,22 @@ const Register = () => {
                 console.log(user)
                 form.reset();/* form reset */
                 setError(''); /* set error */
-                navigate(from, { replace: true })/* redirect user */
-                handleUpdateUserInfo(name, photoURL)
+                navigate(from, { replace: true });/* redirect user */
+                handleUpdateUserInfo(name, photoURL); /* update user info */
+                handleEmailVerification(); /* email verification */
+                toast.success('Please verify your email')
             })
             .catch(error => {
                 console.error(error)
                 setError(error.message)/* set error message */
             })
+    }
+
+    /* verify email */
+    const handleEmailVerification = () => {
+        emailVerification()
+            .then(() => { })
+            .catch(error => console.error(error))
     }
 
     /* update user info */
