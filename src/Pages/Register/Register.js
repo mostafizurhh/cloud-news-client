@@ -8,7 +8,7 @@ const Register = () => {
     const [error, setError] = useState(''); /* set error state */
     const [termsAccepted, setTermsAccepted] = useState(false); /* set terms and conditions state */
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserInfo } = useContext(AuthContext);
 
     /* redirect user to the route they wanted to go before login */
     const navigate = useNavigate();
@@ -32,11 +32,23 @@ const Register = () => {
                 form.reset();/* form reset */
                 setError(''); /* set error */
                 navigate(from, { replace: true })/* redirect user */
+                handleUpdateUserInfo(name, photoURL)
             })
             .catch(error => {
                 console.error(error)
                 setError(error.message)/* set error message */
             })
+    }
+
+    /* update user info */
+    const handleUpdateUserInfo = (name, photoURL) => {
+        const info = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserInfo(info)
+            .then(() => { })
+            .catch(error => console.error(error))
     }
 
     /* terms and conditions function */
@@ -68,7 +80,7 @@ const Register = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Confirm Password</Form.Label>
                 <Form.Control type="password" name='confirmPassword' placeholder="Confirm Password" required />
             </Form.Group>
 

@@ -42,8 +42,20 @@ const Header = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
+                        {/* conditional formating for new and existing user */}
+                        <Nav.Link eventKey={2} href="#memes">
+                            {/* conditional formating for image */}
+                            {
+                                user?.photoURL ?
+                                    <Image
+                                        style={{ height: '30px' }} roundedCircle
+                                        src={user?.photoURL}>
+                                    </Image>
+                                    : <FaUser></FaUser>
+                            }
+                        </Nav.Link>
                         <Nav.Link href="#deets">
-                            {/* conditional formating for new and existing user */}
+
                             {
                                 user?.uid ?
                                     <>
@@ -58,17 +70,7 @@ const Header = () => {
                             }
 
                         </Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
-                            {/* conditional formating for image */}
-                            {
-                                user?.photoURL ?
-                                    <Image
-                                        style={{ height: '30px' }} roundedCircle
-                                        src={user?.photoURL}>
-                                    </Image>
-                                    : <FaUser></FaUser>
-                            }
-                        </Nav.Link>
+
                     </Nav>
                     <div className='d-sm-none'>
                         <LeftSideNav></LeftSideNav>
