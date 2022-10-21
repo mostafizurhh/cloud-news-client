@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBSXI3SVndynFbyUFrA_i7TlnvZsl7t_b0",
-    authDomain: "cloud-news-4f403.firebaseapp.com",
-    projectId: "cloud-news-4f403",
-    storageBucket: "cloud-news-4f403.appspot.com",
-    messagingSenderId: "756802611530",
-    appId: "1:756802611530:web:df2ffbf11fd4b3f216b9b3"
+    apiKey: process.env.REAT_APP_apiKey,
+    authDomain: process.env.REAT_APP_authDomain,
+    projectId: process.env.REAT_APP_projectId,
+    storageBucket: process.env.REAT_APP_storageBucket,
+    messagingSenderId: process.env.REAT_APP_messagingSenderId,
+    appId: process.env.REAT_APP_appId,
 };
 
 // Initialize Firebase
