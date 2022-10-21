@@ -6,6 +6,8 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
     const [error, setError] = useState(''); /* set error state */
+    const [termsAccepted, setTermsAccepted] = useState(false); /* set terms and conditions state */
+
     const { createUser } = useContext(AuthContext);
 
     /* redirect user to the route they wanted to go before login */
@@ -37,6 +39,12 @@ const Register = () => {
             })
     }
 
+    /* terms and conditions function */
+    const handleTerms = event => {
+        setTermsAccepted(event.target.checked)
+    }
+
+
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicName">
@@ -58,18 +66,30 @@ const Register = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" name='password' placeholder="Password" required />
             </Form.Group>
+
             <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" name='confirmPassword' placeholder="Confirm Password" required />
             </Form.Group>
+
+            {/* set terms and conditions */}
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Check
+                    type="checkbox"
+                    onClick={handleTerms}
+                    label={<>Accept <Link to='/terms'>Terms and Conditions</Link> </>} />
+            </Form.Group>
+
             <Form.Group className='d-flex flex-column'>
                 <Form.Text className='text-danger mt-2 mb-2'>
                     {error} {/* show error in UI */}
                 </Form.Text>
-                <Button variant="primary" type="submit" className='w-25'>
+
+                <Button variant="primary" type="submit" className='w-25' disabled={!termsAccepted}>
                     Register
                 </Button>
             </Form.Group>
+
             <div className='mt-2'>
                 <small>
                     Already Have An Account?
