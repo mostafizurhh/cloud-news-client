@@ -14,6 +14,7 @@ const Header = () => {
     /* get context */
     const { user, logOut } = useContext(AuthContext)
 
+    /* logout function */
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -54,8 +55,7 @@ const Header = () => {
                                     : <FaUser></FaUser>
                             }
                         </Nav.Link>
-                        <Nav.Link href="#deets">
-
+                        <>
                             {
                                 user?.uid ?
                                     <>
@@ -68,8 +68,7 @@ const Header = () => {
                                         <Link to='/register' className='ms-2'>Register</Link>
                                     </>
                             }
-
-                        </Nav.Link>
+                        </>
 
                     </Nav>
                     <div className='d-sm-none'>

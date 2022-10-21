@@ -31,9 +31,9 @@ const NewsSummaryCard = ({ news }) => {
                 <Card.Text className='mt-3 text-start'>
                     {
                         news.details.length > 180 ?
-                            <p>{news.details.slice(0, 180) + '...'} <Link to={`/news/${news._id}`}>Read more</Link></p>
+                            <>{news.details.slice(0, 180) + '...'} <Link to={`/news/${news._id}`}>Read more</Link></>
                             :
-                            <p>{news.details}</p>
+                            <>{news.details}</>
                     }
                 </Card.Text>
             </Card.Body>

@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <RouterProvider router={routes}></RouterProvider>
-      <Toaster></Toaster>
+      <Toaster></Toaster> {/* to show toast message */}
     </div>
   );
 }

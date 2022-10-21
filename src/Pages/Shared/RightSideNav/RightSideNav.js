@@ -13,7 +13,7 @@ const RightSideNav = () => {
     /* create provider */
     const googleProvider = new GoogleAuthProvider();
 
-    /* button onSubmit function */
+    /* button onClick function */
     const handleGoogleSignin = () => {
         providerLogin(googleProvider)
             .then(result => {

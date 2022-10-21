@@ -45,7 +45,10 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log(currentUser)
-            setUser(currentUser);
+            /* enforce email verification to get verified user */
+            if (currentUser === null || currentUser.emailVerified) {
+                setUser(currentUser);
+            }
             setloading(false) /* solve reload issue */
         })
 
@@ -54,7 +57,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    const authInfo = { user, loading, createUser, emailVerification, providerLogin, loginWithEmail, updateUserInfo, logOut } /* to access all info of authInfo or AuthContext from anywhere else in the website  */
+    const authInfo = { user, loading, setloading, createUser, emailVerification, providerLogin, loginWithEmail, updateUserInfo, logOut } /* to access all info of authInfo or AuthContext from anywhere else in the website  */
 
 
     return (

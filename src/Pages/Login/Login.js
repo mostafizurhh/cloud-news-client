@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState(''); /* set state for error */
-    const { loginWithEmail } = useContext(AuthContext);
+    const { loginWithEmail, setLoading } = useContext(AuthContext);
 
     /* redirect user to the route they wanted to go before login */
     const navigate = useNavigate();
@@ -27,11 +28,23 @@ const Login = () => {
                 console.log(user)
                 form.reset(); /* reset form */
                 setError('') /* set error */
-                navigate(from, { replace: true })/* navigate user */
+
+                /* set condition for verified user to navigate*/
+                if (user.emailVerified) {
+
+                    navigate(from, { replace: true })/* navigate user */
+                }
+                else {
+                    toast.error('Please verify your email first')
+                }
             })
             .catch(error => {
                 console.error(error)
                 setError(error.message) /* set error */
+            })
+            /* get verified user */
+            .finally(() => {
+                setLoading(false)
             })
 
     }
