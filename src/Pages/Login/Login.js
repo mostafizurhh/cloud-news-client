@@ -1,14 +1,19 @@
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const [error, setError] = useState('');
+    const [error, setError] = useState(''); /* set state for error */
     const { loginWithEmail } = useContext(AuthContext);
-    const navigate = useNavigate();
 
+    /* redirect user to the route they wanted to go before login */
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
+    /* handle form submit function */
     const handleSubmit = (event) => {
         event.preventDefault()
         const form = event.target
@@ -20,13 +25,13 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 console.log(user)
-                form.reset();
-                setError('')
-                navigate('/')
+                form.reset(); /* reset form */
+                setError('') /* set error */
+                navigate(from, { replace: true })/* navigate user */
             })
             .catch(error => {
                 console.error(error)
-                setError(error.message)
+                setError(error.message) /* set error */
             })
 
     }
@@ -45,7 +50,7 @@ const Login = () => {
             </Form.Group>
             <Form.Group className='d-flex flex-column'>
                 <Form.Text className='text-danger mt-2 mb-2'>
-                    {error}
+                    {error} {/* show error on UI */}
                 </Form.Text>
                 <Button variant="primary" type="submit" className='w-25'>
                     Login

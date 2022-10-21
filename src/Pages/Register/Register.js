@@ -1,14 +1,19 @@
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
-    const [error, setError] = useState('');
+    const [error, setError] = useState(''); /* set error state */
     const { createUser } = useContext(AuthContext);
 
+    /* redirect user to the route they wanted to go before login */
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
+    /* handle form submit */
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -22,12 +27,13 @@ const Register = () => {
             .then(result => {
                 const user = result.user
                 console.log(user)
-                form.reset();
-                setError('')
+                form.reset();/* form reset */
+                setError(''); /* set error */
+                navigate(from, { replace: true })/* redirect user */
             })
             .catch(error => {
                 console.error(error)
-                setError(error.message)
+                setError(error.message)/* set error message */
             })
     }
 
@@ -58,7 +64,7 @@ const Register = () => {
             </Form.Group>
             <Form.Group className='d-flex flex-column'>
                 <Form.Text className='text-danger mt-2 mb-2'>
-                    {error}
+                    {error} {/* show error in UI */}
                 </Form.Text>
                 <Button variant="primary" type="submit" className='w-25'>
                     Register
