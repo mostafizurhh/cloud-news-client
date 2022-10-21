@@ -44,7 +44,7 @@ const Header = () => {
                     </Nav>
                     <Nav>
                         {/* conditional formating for new and existing user */}
-                        <Nav.Link eventKey={2} href="#memes">
+                        <Link to="/profile">
                             {/* conditional formating for image */}
                             {
                                 user?.photoURL ?
@@ -54,7 +54,7 @@ const Header = () => {
                                     </Image>
                                     : <FaUser></FaUser>
                             }
-                        </Nav.Link>
+                        </Link>
                         <>
                             {
                                 user?.uid ?
