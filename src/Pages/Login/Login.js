@@ -7,7 +7,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState(''); /* set state for error */
-    const { loginWithEmail, setLoading } = useContext(AuthContext);
+    const { loginWithEmail, setloading } = useContext(AuthContext);
 
     /* redirect user to the route they wanted to go before login */
     const navigate = useNavigate();
@@ -44,7 +44,7 @@ const Login = () => {
             })
             /* get verified user */
             .finally(() => {
-                setLoading(false)
+                setloading(false)
             })
 
     }
